@@ -65,7 +65,25 @@ function poem_theme() {
   );
 }
 
-function poem_page () {
+/**
+ * Implements hook_preprocess().
+ */
+function poem_preprocess(&$variables, $hook) {
+  // Grab the user object from $variables.
+  $user = $variables['user'];
+
+  $name = check_plain($user->name);
+  $variables['author'] = $name;
+
+  if (module_exists('contact')) {
+    $uid = $user->uid;
+    $contact_form = "user/$uid/contact";
+    $variables['contact_form'] = l(t('contact form'), "user/$uid/contact");
+  }
+
+}
+
+function poem_page() {
   $form = drupal_get_form("poem_form");
   return $form;
 }

@@ -7,6 +7,8 @@
  * Available variables:
  *  - roses
  *  - violets
+ *  - author
+ *  - contact_form
  *
  * @see template_preprocess
  * @see template_preprocess_THEME_HOOK
@@ -14,8 +16,11 @@
  */
 #}
 
-<h1>Rose are {{ roses }}</h1>
+<h1>Rose are {{ roses }} by {{ author }}</h1>
 <p>&nbsp;&nbsp;&nbsp;&nbsp; Rose are {{ roses }}</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp; Violets are {{ violets }}</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp; Nobody loves Form API</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp; More than I do </p>
+{% if contact_form %}
+  <p>Send fan mail to {{author}} at {{ contact_form }}.</p>
+{% endif %}
