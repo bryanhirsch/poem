@@ -72,7 +72,7 @@ function poem_preprocess(&$variables, $hook) {
   // Grab the user object from $variables.
   $user = $variables['user'];
 
-  $name = check_plain($user->name);
+  $name = ($user->uid == 0) ? t('Anonymous User') : check_plain($user->name);
   $variables['author'] = $name;
 
   if (module_exists('contact')) {
